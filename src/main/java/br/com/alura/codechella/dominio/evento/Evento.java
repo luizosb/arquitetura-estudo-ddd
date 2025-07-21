@@ -5,14 +5,31 @@ import br.com.alura.codechella.dominio.ingresso.TipoIngresso;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class Evento {
+
+    private UUID uuid;
 
     private Categoria categoria;
     private String descricao;
     private Endereco endereco;
     private LocalDateTime data;
     private List<TipoIngresso> tipoIngressos = new ArrayList<>();
+
+    public Evento(UUID uuid, Categoria categoria, String descricao, Endereco endereco, LocalDateTime data) {
+        this.uuid = uuid;
+        this.categoria = categoria;
+        this.descricao = descricao;
+        this.endereco = endereco;
+        this.data = data;
+
+        gerarIdentificador();
+    }
+
+    private void gerarIdentificador() {
+        this.uuid = UUID.randomUUID();
+    }
 
     public void incluirNovoTipoDeIngressoAoEvento(TipoIngresso tipoIngresso){
         this.tipoIngressos.add(tipoIngresso);
